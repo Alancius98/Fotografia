@@ -11,25 +11,25 @@ const feedImages = [
 
 <section class="bg-[#121212] px-6 py-24 md:py-32">
   <div class="mx-auto max-w-7xl">
-    <h2 class="mb-12 text-center text-[11px] font-light tracking-[0.35em] text-white/70 md:text-xs">
+    <h2 class="reveal mb-12 text-center text-[11px] font-light tracking-[0.35em] text-white/70 md:text-xs">
       FOLLOW ME ON INSTAGRAM
     </h2>
 
     <div class="grid grid-cols-3 gap-2 md:grid-cols-6 md:gap-3">
       {
-        feedImages.map((src) => (
+        feedImages.map((src, index) => (
           <a
             href="https://www.instagram.com/alancius.1998/"
             target="_blank"
             rel="noopener noreferrer"
-            class="group relative aspect-square overflow-hidden bg-[#181818]"
+            class={`reveal hover-image group relative aspect-square overflow-hidden bg-[#181818] ${index % 2 === 1 ? 'reveal-delay-2' : ''}`}
           >
             <img
               src={src}
               alt="Instagram feed"
               loading="lazy"
               decoding="async"
-              class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              class="h-full w-full object-cover"
             />
             <div class="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/20" />
           </a>
@@ -37,7 +37,7 @@ const feedImages = [
       }
     </div>
 
-    <div class="mt-10 text-center">
+    <div class="reveal mt-10 text-center">
       <a
         href="https://www.instagram.com/alancius.1998/"
         target="_blank"

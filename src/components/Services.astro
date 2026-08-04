@@ -1,0 +1,72 @@
+---
+const services = [
+  {
+    title: 'WEDDINGS',
+    description: 'Full coverage of your most important day, from preparation to the last dance, with an editorial and timeless approach.',
+    features: ['8+ hours of coverage', 'Two photographers', 'Online gallery', 'Edited high-resolution images'],
+    price: 'FROM $2,500',
+    image: '/images/photo-100.jpg'
+  },
+  {
+    title: 'PORTRAITS',
+    description: 'Intimate sessions designed to capture your essence with natural light, elegant composition and authentic emotion.',
+    features: ['1–2 hour session', 'Wardrobe guidance', 'Location scouting', '20+ edited images'],
+    price: 'FROM $450',
+    image: '/images/photo-0.jpg'
+  },
+  {
+    title: 'EDITORIAL',
+    description: 'Visual campaigns for brands, magazines and creative projects that require a refined narrative and art direction.',
+    features: ['Creative direction', 'Studio or location', 'Usage rights', 'Fast turnaround'],
+    price: 'CUSTOM QUOTE',
+    image: '/images/photo-10.jpg'
+  }
+];
+---
+
+<section id="services" class="bg-[#121212] px-6 py-24 md:py-32">
+  <div class="mx-auto max-w-7xl">
+    <div class="reveal mb-16 text-center">
+      <h2 class="text-[11px] font-light tracking-[0.35em] text-white/70 md:text-xs">
+        SERVICES
+      </h2>
+      <p class="font-serif mt-4 text-xl font-light italic text-white/80 md:text-2xl">
+        Tailored experiences for every story
+      </p>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-3">
+      {
+        services.map((service, index) => (
+          <div class={`reveal group border border-white/10 bg-[#181818] transition-colors duration-500 hover:border-white/30 ${index === 1 ? 'reveal-delay-2' : ''} ${index === 2 ? 'reveal-delay-3' : ''}`}>
+            <div class="hover-image aspect-[4/3] overflow-hidden">
+              <img
+                src={service.image}
+                alt={service.title}
+                loading="lazy"
+                decoding="async"
+                class="h-full w-full object-cover"
+              />
+            </div>
+            <div class="p-8">
+              <h3 class="text-xs font-light tracking-[0.25em] text-white">{service.title}</h3>
+              <p class="font-serif mt-4 text-base italic leading-relaxed text-white/70">
+                {service.description}
+              </p>
+              <ul class="mt-6 space-y-2">
+                {service.features.map((feature) => (
+                  <li class="text-[10px] font-light tracking-[0.15em] text-white/50">• {feature}</li>
+                ))}
+              </ul>
+              <p class="mt-8 text-[11px] font-light tracking-[0.25em] text-white/80">{service.price}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="reveal mt-16 text-center">
+      <a href="/contacto" class="btn-outline">REQUEST AVAILABILITY</a>
+    </div>
+  </div>
+</section>

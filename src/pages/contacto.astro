@@ -17,7 +17,7 @@ import PageHeader from '../components/PageHeader.astro';
   <section class="mx-auto max-w-5xl px-6 py-24 md:py-32">
     <div class="grid gap-16 md:grid-cols-2">
       <div class="space-y-10">
-        <div>
+        <div class="reveal">
           <h2 class="mb-4 text-xs font-light tracking-[0.35em] text-white/60">GET IN TOUCH</h2>
           <p class="font-serif text-2xl font-light italic leading-relaxed text-white md:text-3xl">
             I reply within 24 hours. Write me directly on WhatsApp or Instagram.
@@ -29,7 +29,7 @@ import PageHeader from '../components/PageHeader.astro';
             href="https://wa.me/522216001248"
             target="_blank"
             rel="noopener noreferrer"
-            class="group flex items-center gap-5 border border-white/10 bg-[#181818] p-5 transition-colors hover:border-white/30"
+            class="reveal reveal-delay-1 group flex items-center gap-5 border border-white/10 bg-[#181818] p-5 transition-colors hover:border-white/30"
           >
             <span class="flex h-12 w-12 items-center justify-center bg-white/5 text-white transition-colors group-hover:bg-white/10">
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -46,7 +46,7 @@ import PageHeader from '../components/PageHeader.astro';
             href="https://www.instagram.com/alancius.1998/"
             target="_blank"
             rel="noopener noreferrer"
-            class="group flex items-center gap-5 border border-white/10 bg-[#181818] p-5 transition-colors hover:border-white/30"
+            class="reveal reveal-delay-2 group flex items-center gap-5 border border-white/10 bg-[#181818] p-5 transition-colors hover:border-white/30"
           >
             <span class="flex h-12 w-12 items-center justify-center bg-white/5 text-white transition-colors group-hover:bg-white/10">
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
@@ -64,7 +64,7 @@ import PageHeader from '../components/PageHeader.astro';
       </div>
 
       <form
-        class="space-y-6 border border-white/10 bg-[#181818] p-8 md:p-10"
+        class="reveal reveal-delay-2 space-y-6 border border-white/10 bg-[#181818] p-8 md:p-10"
         action="https://formspree.io/f/TU_FORM_ID"
         method="POST"
       >
@@ -119,12 +119,14 @@ import PageHeader from '../components/PageHeader.astro';
           ></textarea>
         </div>
 
-        <button
-          type="submit"
-          class="w-full border border-white bg-white py-4 text-[11px] font-normal tracking-[0.25em] text-[#121212] transition-colors hover:bg-transparent hover:text-white"
-        >
-          SEND MESSAGE
-        </button>
+        <div class="reveal reveal-delay-3">
+          <button
+            type="submit"
+            class="btn-editorial w-full justify-center"
+          >
+            SEND MESSAGE
+          </button>
+        </div>
       </form>
     </div>
   </section>

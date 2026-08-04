@@ -12,23 +12,37 @@ const {
 } = Astro.props;
 ---
 
-<section class="relative flex h-screen w-full items-center justify-center overflow-hidden">
+<section class="hero-section relative flex h-screen w-full items-center justify-center overflow-hidden">
   <img
     src={image}
     alt="Hero editorial photography"
     loading="eager"
     decoding="async"
     fetchpriority="high"
-    class="absolute inset-0 h-full w-full object-cover"
+    class="hero-image absolute inset-0 h-full w-full object-cover"
   />
   <div class="absolute inset-0 bg-black/30"></div>
 
-  <div class="relative z-10 text-center px-6">
-    <h1 class="text-5xl font-extralight tracking-[0.35em] text-white md:text-7xl lg:text-8xl">
+  <div class="relative z-10 px-6 text-center">
+    <h1 class="font-display text-6xl text-white md:text-8xl lg:text-9xl">
       {title}
     </h1>
     <p class="font-serif mt-8 text-lg font-light italic tracking-wide text-white/90 md:text-2xl">
       {subtitle}
     </p>
   </div>
+
+  <script>
+    (function () {
+      const section = document.querySelector('.hero-section');
+      const image = document.querySelector('.hero-image');
+      if (!section || !image) return;
+
+      window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        const rate = scrolled * 0.35;
+        (image as HTMLElement).style.transform = `translateY(${rate}px) scale(1.05)`;
+      });
+    })();
+  </script>
 </section>

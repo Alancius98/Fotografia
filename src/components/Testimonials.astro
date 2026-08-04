@@ -17,14 +17,14 @@ const testimonials = [
 
 <section id="testimonials" class="bg-[#1e1e1e] px-6 py-24 md:py-32">
   <div class="mx-auto max-w-7xl">
-    <h2 class="mb-16 text-[11px] font-light tracking-[0.35em] text-white/70 md:text-xs">
+    <h2 class="reveal mb-16 text-[11px] font-light tracking-[0.35em] text-white/70 md:text-xs">
       TESTIMONIALS
     </h2>
 
     <div class="grid gap-10 md:grid-cols-3 md:gap-12">
       {
-        testimonials.map((item) => (
-          <div class="text-center md:text-left">
+        testimonials.map((item, index) => (
+          <div class={`reveal text-center md:text-left ${index === 1 ? 'reveal-delay-2' : ''} ${index === 2 ? 'reveal-delay-3' : ''}`}>
             <p class="font-serif text-lg font-light italic leading-relaxed text-white/90 md:text-xl">
               "{item.quote}"
             </p>

@@ -73,18 +73,19 @@ const currentPath = Astro.url.pathname;
   <!-- Overlay móvil -->
   <div
     id="mobile-menu"
-    class="fixed inset-0 z-40 hidden flex-col items-center justify-center bg-[#121212]/95 backdrop-blur-md"
+    class="fixed inset-0 z-40 flex flex-col items-center justify-center bg-[#121212]/95 backdrop-blur-md opacity-0 invisible transition-all duration-500"
   >
     <nav class="flex flex-col items-center gap-8">
       {
-        navItems.map((item) => {
+        navItems.map((item, index) => {
           const isActive = currentPath === item.href;
           return (
             <a
               href={item.href}
-              class={`text-sm font-light tracking-[0.25em] transition-colors ${
+              class={`mobile-link translate-y-4 opacity-0 text-sm font-light tracking-[0.25em] transition-all duration-500 ${
                 isActive ? 'text-white' : 'text-white/60 hover:text-white'
               }`}
+              style={`transition-delay: ${index * 75}ms`}
             >
               {item.label}
             </a>
@@ -96,19 +97,45 @@ const currentPath = Astro.url.pathname;
 </header>
 
 <script>
-  const toggle = document.getElementById('menu-toggle');
-  const menu = document.getElementById('mobile-menu');
-  const iconMenu = document.getElementById('icon-menu');
-  const iconClose = document.getElementById('icon-close');
+  (function () {
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const iconMenu = document.getElementById('icon-menu');
+    const iconClose = document.getElementById('icon-close');
+    const links = document.querySelectorAll('.mobile-link');
 
-  if (toggle && menu && iconMenu && iconClose) {
+    if (!toggle || !menu || !iconMenu || !iconClose) return;
+
+    function setMenuOpen(isOpen: boolean) {
+      if (isOpen) {
+        menu.classList.remove('opacity-0', 'invisible');
+        menu.classList.add('opacity-100', 'visible');
+        iconMenu.classList.add('hidden');
+        iconClose.classList.remove('hidden');
+        links.forEach((link) => {
+          link.classList.remove('translate-y-4', 'opacity-0');
+        });
+        document.body.style.overflow = 'hidden';
+      } else {
+        menu.classList.add('opacity-0', 'invisible');
+        menu.classList.remove('opacity-100', 'visible');
+        iconMenu.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+        links.forEach((link) => {
+          link.classList.add('translate-y-4', 'opacity-0');
+        });
+        document.body.style.overflow = '';
+      }
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    }
+
     toggle.addEventListener('click', () => {
-      const isOpen = !menu.classList.contains('hidden');
-      menu.classList.toggle('hidden');
-      menu.classList.toggle('flex');
-      iconMenu.classList.toggle('hidden');
-      iconClose.classList.toggle('hidden');
-      toggle.setAttribute('aria-expanded', String(!isOpen));
+      const isOpen = menu.classList.contains('opacity-100');
+      setMenuOpen(!isOpen);
     });
-  }
+
+    links.forEach((link) => {
+      link.addEventListener('click', () => setMenuOpen(false));
+    });
+  })();
 </script>
