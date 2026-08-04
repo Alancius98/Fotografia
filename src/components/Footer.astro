@@ -2,12 +2,12 @@
 const currentYear = new Date().getFullYear();
 
 const navItems = [
-  { label: 'HOME', href: '/' },
-  { label: 'ABOUT', href: '/sobre-mi' },
-  { label: 'SERVICES', href: '/portafolio' },
-  { label: 'PORTFOLIO', href: '/portafolio' },
-  { label: 'TESTIMONIALS', href: '/#testimonials' },
-  { label: 'CONTACT', href: '/contacto' }
+  { label: 'INICIO', href: '/' },
+  { label: 'SOBRE MÍ', href: '/sobre-mi' },
+  { label: 'SERVICIOS', href: '/#services' },
+  { label: 'PORTAFOLIO', href: '/portafolio' },
+  { label: 'TESTIMONIOS', href: '/#testimonials' },
+  { label: 'CONTACTO', href: '/contacto' }
 ];
 
 const currentPath = Astro.url.pathname;
@@ -76,7 +76,7 @@ const currentPath = Astro.url.pathname;
       </nav>
 
       <p class="text-[10px] font-light tracking-[0.15em] text-white/40">
-        © {currentYear} ALANCIUS. ALL RIGHTS RESERVED.
+        © {currentYear} ALANCIUS. TODOS LOS DERECHOS RESERVADOS.
       </p>
     </div>
   </div>

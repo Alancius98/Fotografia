@@ -4,13 +4,13 @@ import PageHeader from '../components/PageHeader.astro';
 ---
 
 <BaseLayout
-  title="Contact"
-  description="Get in touch with Alancius for portrait sessions, weddings and editorial projects."
+  title="Contacto"
+  description="Contáctame con Alancius para sesiones de retrato, bodas y proyectos editoriales."
   solidNavbar={true}
 >
   <PageHeader
-    title="CONTACT"
-    subtitle="Let's create something timeless together"
+    title="CONTACTO"
+    subtitle="Crear algo atemporal juntos"
     image="/images/hero.jpg"
   />
 
@@ -18,9 +18,9 @@ import PageHeader from '../components/PageHeader.astro';
     <div class="grid gap-16 md:grid-cols-2">
       <div class="space-y-10">
         <div class="reveal">
-          <h2 class="mb-4 text-xs font-light tracking-[0.35em] text-white/60">GET IN TOUCH</h2>
+          <h2 class="mb-4 text-xs font-light tracking-[0.35em] text-white/60">CONTÁCTAME</h2>
           <p class="font-serif text-2xl font-light italic leading-relaxed text-white md:text-3xl">
-            I reply within 24 hours. Write me directly on WhatsApp or Instagram.
+            Respondo en menos de 24 horas. Escríbeme directamente por WhatsApp o Instagram.
           </p>
         </div>
 
@@ -69,14 +69,14 @@ import PageHeader from '../components/PageHeader.astro';
         method="POST"
       >
         <div>
-          <label for="name" class="mb-2 block text-[10px] font-light tracking-[0.2em] text-white/50">NAME</label>
+          <label for="name" class="mb-2 block text-[10px] font-light tracking-[0.2em] text-white/50">NOMBRE</label>
           <input
             type="text"
             id="name"
             name="name"
             required
             class="w-full border border-white/10 bg-[#121212] px-4 py-3 text-sm font-light text-white placeholder-white/20 outline-none transition-colors focus:border-white/30"
-            placeholder="Your name"
+            placeholder="Tu nombre"
           />
         </div>
 
@@ -88,34 +88,34 @@ import PageHeader from '../components/PageHeader.astro';
             name="email"
             required
             class="w-full border border-white/10 bg-[#121212] px-4 py-3 text-sm font-light text-white placeholder-white/20 outline-none transition-colors focus:border-white/30"
-            placeholder="your@email.com"
+            placeholder="tu@email.com"
           />
         </div>
 
         <div>
-          <label for="type" class="mb-2 block text-[10px] font-light tracking-[0.2em] text-white/50">PROJECT TYPE</label>
+          <label for="type" class="mb-2 block text-[10px] font-light tracking-[0.2em] text-white/50">TIPO DE PROYECTO</label>
           <select
             id="type"
             name="type"
             class="w-full border border-white/10 bg-[#121212] px-4 py-3 text-sm font-light text-white outline-none transition-colors focus:border-white/30"
           >
-            <option value="wedding">Wedding</option>
-            <option value="portrait">Portrait</option>
+            <option value="wedding">Boda</option>
+            <option value="portrait">Retrato</option>
             <option value="editorial">Editorial</option>
-            <option value="commercial">Commercial</option>
-            <option value="other">Other</option>
+            <option value="commercial">Comercial</option>
+            <option value="other">Otro</option>
           </select>
         </div>
 
         <div>
-          <label for="message" class="mb-2 block text-[10px] font-light tracking-[0.2em] text-white/50">MESSAGE</label>
+          <label for="message" class="mb-2 block text-[10px] font-light tracking-[0.2em] text-white/50">MENSAJE</label>
           <textarea
             id="message"
             name="message"
             rows="5"
             required
             class="w-full resize-none border border-white/10 bg-[#121212] px-4 py-3 text-sm font-light text-white placeholder-white/20 outline-none transition-colors focus:border-white/30"
-            placeholder="Tell me about your project..."
+            placeholder="Cuéntame sobre tu proyecto..."
           ></textarea>
         </div>
 
@@ -124,7 +124,7 @@ import PageHeader from '../components/PageHeader.astro';
             type="submit"
             class="btn-editorial w-full justify-center"
           >
-            SEND MESSAGE
+            ENVIAR MENSAJE
           </button>
         </div>
       </form>
