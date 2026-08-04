@@ -1,4 +1,4 @@
-export type Category = 'Todos' | 'Retrato' | 'Eventos' | 'Comercial';
+export type Category = 'Todos' | 'Retrato' | 'Editorial';
 
 export interface Photo {
   id: string;
@@ -8,63 +8,63 @@ export interface Photo {
   title: string;
 }
 
-export const categories: Category[] = ['Todos', 'Retrato', 'Eventos', 'Comercial'];
+export const categories: Category[] = ['Todos', 'Retrato', 'Editorial'];
 
 export const photos: Photo[] = [
   {
     id: '1',
-    src: '/images/photo-0.jpg',
-    alt: 'Retrato artístico en estudio',
-    category: 'Retrato',
-    title: 'Luz natural'
-  },
-  {
-    id: '2',
     src: '/images/retrato.jpg',
     alt: 'Retrato familiar a luz natural',
     category: 'Retrato',
-    title: 'Luz de retrato'
+    title: 'Luz familiar'
+  },
+  {
+    id: '2',
+    src: '/images/infantil.jpg',
+    alt: 'Retrato infantil en campo',
+    category: 'Retrato',
+    title: 'Infancia'
   },
   {
     id: '3',
-    src: '/images/photo-10.jpg',
-    alt: 'Sesión comercial para marca',
-    category: 'Comercial',
-    title: 'Identidad visual'
+    src: '/images/arquitectura.jpg',
+    alt: 'Retrato editorial en arquitectura colonial',
+    category: 'Retrato',
+    title: 'Esencia'
   },
   {
     id: '4',
-    src: '/images/photo-100.jpg',
-    alt: 'Cobertura de evento corporativo',
-    category: 'Eventos',
-    title: 'Momentum'
+    src: '/images/editorial-1.jpg',
+    alt: 'Retrato editorial nocturno',
+    category: 'Editorial',
+    title: 'Noche morada'
   },
   {
     id: '5',
-    src: '/images/photo-101.jpg',
-    alt: 'Fotografía de producto',
-    category: 'Comercial',
-    title: 'Detalles'
+    src: '/images/editorial-2.jpg',
+    alt: 'Retrato editorial en vestido verde',
+    category: 'Editorial',
+    title: 'Elegancia nocturna'
   },
   {
     id: '6',
-    src: '/images/photo-102.jpg',
-    alt: 'Retrato lifestyle al aire libre',
-    category: 'Retrato',
-    title: 'Alma libre'
+    src: '/images/editorial-3.jpg',
+    alt: 'Retrato editorial con luces de ciudad',
+    category: 'Editorial',
+    title: 'Luces de la ciudad'
   },
   {
     id: '7',
-    src: '/images/photo-103.jpg',
-    alt: 'Celebración privada',
-    category: 'Eventos',
-    title: 'Instantes'
+    src: '/images/hero.jpg',
+    alt: 'Retrato editorial atemporal',
+    category: 'Editorial',
+    title: 'Atemporal'
   },
   {
     id: '8',
-    src: '/images/photo-104.jpg',
-    alt: 'Campaña publicitaria',
-    category: 'Comercial',
-    title: 'Narrativa'
+    src: '/images/banner.jpg',
+    alt: 'Retrato editorial con reflejos urbanos',
+    category: 'Editorial',
+    title: 'Reflejos'
   }
 ];
