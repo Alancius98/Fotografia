@@ -20,10 +20,10 @@ export const photos: Photo[] = [
   },
   {
     id: '2',
-    src: '/images/photo-1.jpg',
-    alt: 'Retrato editorial en blanco y negro',
+    src: '/images/retrato.jpg',
+    alt: 'Retrato familiar a luz natural',
     category: 'Retrato',
-    title: 'Esencia'
+    title: 'Luz de retrato'
   },
   {
     id: '3',
