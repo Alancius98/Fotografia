@@ -1,0 +1,44 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  image?: string;
+}
+
+const {
+  title,
+  subtitle,
+  image
+} = Astro.props;
+---
+
+<section class={`relative flex items-center justify-center overflow-hidden py-32 md:py-40 ${image ? 'min-h-[50vh]' : 'bg-[#121212]'}`}>
+  {
+    image && (
+      <>
+        <img
+          src={image}
+          alt={title}
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+          class="absolute inset-0 h-full w-full object-cover"
+        />
+        <div class="absolute inset-0 bg-black/40"></div>
+      </>
+    )
+  }
+
+  <div class="relative z-10 px-6 text-center">
+    <h1 class="text-4xl font-extralight tracking-[0.35em] text-white md:text-6xl lg:text-7xl">
+      {title}
+    </h1>
+    {
+      subtitle && (
+        <p class="font-serif mt-6 text-base font-light italic tracking-wide text-white/80 md:text-lg">
+          {subtitle}
+        </p>
+      )
+    }
+  </div>
+</section>

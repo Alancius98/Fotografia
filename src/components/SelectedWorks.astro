@@ -1,0 +1,66 @@
+---
+import { photos } from '../data/photos';
+
+const selectedPhotos = photos.slice(0, 6);
+---
+
+<section class="bg-[#121212] px-6 py-24 md:py-32">
+  <div class="mx-auto max-w-7xl">
+    <h2 class="mb-16 text-center text-[11px] font-light tracking-[0.35em] text-white/70 md:text-xs">
+      SELECTED WORKS
+    </h2>
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <!-- Columna izquierda: verticales -->
+      <div class="flex flex-col gap-4">
+        {
+          [selectedPhotos[0], selectedPhotos[3]].map(
+            (photo) =>
+              photo && (
+                <a href="/portafolio" class="group relative aspect-[3/4] overflow-hidden bg-[#181818]">
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    loading="lazy"
+                    decoding="async"
+                    class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div class="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/20" />
+                </a>
+              )
+          )
+        }
+      </div>
+
+      <!-- Columna derecha: horizontales -->
+      <div class="flex flex-col gap-4">
+        {
+          [selectedPhotos[1], selectedPhotos[2], selectedPhotos[4], selectedPhotos[5]].map(
+            (photo) =>
+              photo && (
+                <a href="/portafolio" class="group relative aspect-[4/3] overflow-hidden bg-[#181818]">
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    loading="lazy"
+                    decoding="async"
+                    class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div class="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/20" />
+                </a>
+              )
+          )
+        }
+      </div>
+    </div>
+
+    <div class="mt-16 flex justify-center">
+      <a
+        href="/portafolio"
+        class="inline-block border border-white bg-white px-10 py-4 text-[11px] font-normal tracking-[0.25em] text-[#121212] transition-colors hover:bg-transparent hover:text-white"
+      >
+        VIEW PORTFOLIO
+      </a>
+    </div>
+  </div>
+</section>

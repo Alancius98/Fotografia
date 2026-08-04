@@ -1,0 +1,114 @@
+---
+interface Props {
+  solid?: boolean;
+}
+
+const { solid = false } = Astro.props;
+
+const navItems = [
+  { label: 'HOME', href: '/' },
+  { label: 'ABOUT', href: '/sobre-mi' },
+  { label: 'SERVICES', href: '/portafolio' },
+  { label: 'PORTFOLIO', href: '/portafolio' },
+  { label: 'TESTIMONIALS', href: '/#testimonials' },
+  { label: 'CONTACT', href: '/contacto' }
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class={`z-50 text-white ${solid ? 'relative bg-[#121212]' : 'absolute top-0 left-0 right-0'}`}>
+  <div class="mx-auto flex max-w-7xl flex-col items-center px-6 py-8">
+    <!-- Marca centrada -->
+    <a
+      href="/"
+      class="mb-6 text-2xl font-light tracking-[0.35em] text-white transition-opacity hover:opacity-80 md:text-3xl"
+    >
+      ALANCIUS
+    </a>
+
+    <!-- Menú desktop dividido -->
+    <nav class="hidden items-center gap-8 md:flex">
+      {
+        navItems.map((item) => {
+          const isActive =
+            currentPath === item.href ||
+            (item.href !== '/' && currentPath.startsWith(`${item.href}/`)) ||
+            (item.href === '/' && currentPath === '/');
+          return (
+            <a
+              href={item.href}
+              class={`text-[11px] font-light tracking-[0.25em] transition-colors ${
+                isActive ? 'text-white' : 'text-white/60 hover:text-white'
+              }`}
+            >
+              {item.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+
+    <!-- Menú móvil -->
+    <div class="absolute right-6 top-8 md:hidden">
+      <button
+        id="menu-toggle"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        class="text-white/80 transition-colors hover:text-white"
+      >
+        <svg id="icon-menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" x2="21" y1="6" y2="6"/>
+          <line x1="3" x2="21" y1="12" y2="12"/>
+          <line x1="3" x2="21" y1="18" y2="18"/>
+        </svg>
+        <svg id="icon-close" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18"/>
+          <path d="m6 6 12 12"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Overlay móvil -->
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 z-40 hidden flex-col items-center justify-center bg-[#121212]/95 backdrop-blur-md"
+  >
+    <nav class="flex flex-col items-center gap-8">
+      {
+        navItems.map((item) => {
+          const isActive = currentPath === item.href;
+          return (
+            <a
+              href={item.href}
+              class={`text-sm font-light tracking-[0.25em] transition-colors ${
+                isActive ? 'text-white' : 'text-white/60 hover:text-white'
+              }`}
+            >
+              {item.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const iconMenu = document.getElementById('icon-menu');
+  const iconClose = document.getElementById('icon-close');
+
+  if (toggle && menu && iconMenu && iconClose) {
+    toggle.addEventListener('click', () => {
+      const isOpen = !menu.classList.contains('hidden');
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
+      iconMenu.classList.toggle('hidden');
+      iconClose.classList.toggle('hidden');
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+    });
+  }
+</script>
