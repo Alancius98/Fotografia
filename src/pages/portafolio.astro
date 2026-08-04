@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Gallery from '../components/Gallery.astro';
+---
+
+<BaseLayout
+  title="Portfolio"
+  description="Editorial portrait and wedding photography portfolio by Alancius."
+  solidNavbar={true}
+>
+  <PageHeader
+    title="PORTFOLIO"
+    subtitle="A curated collection of portraits, weddings and editorial work"
+    image="/images/banner.jpg"
+  />
+
+  <Gallery showFilters={true} />
+</BaseLayout>

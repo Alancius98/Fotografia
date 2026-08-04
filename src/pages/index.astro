@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SelectedWorks from '../components/SelectedWorks.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CTABanner from '../components/CTABanner.astro';
+import InstagramFeed from '../components/InstagramFeed.astro';
+---
+
+<BaseLayout
+  title="Inicio"
+  description="Alancius Photography — Modern portrait and wedding photography with an editorial soul."
+>
+  <Hero
+    title="ALANCIUS"
+    subtitle="MODERN PORTRAIT & WEDDING PHOTOGRAPHY"
+    image="/images/hero.jpg"
+  />
+
+  <SelectedWorks />
+
+  <Testimonials />
+
+  <CTABanner image="/images/banner.jpg" />
+
+  <InstagramFeed />
+</BaseLayout>
