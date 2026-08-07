@@ -1,27 +1,28 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
 interface Props {
   title: string;
   subtitle?: string;
-  image?: string;
+  image?: ImageMetadata;
 }
 
-const {
-  title,
-  subtitle,
-  image
-} = Astro.props;
+const { title, subtitle, image } = Astro.props;
 ---
 
-<section class={`relative flex items-center justify-center overflow-hidden py-32 md:py-40 ${image ? 'min-h-[50vh]' : 'bg-[#121212]'}`}>
+<section class={`relative flex items-center justify-center overflow-hidden py-24 ${image ? 'min-h-[40vh]' : 'bg-[#121212]'}`}>
   {
     image && (
       <>
-        <img
+        <Image
           src={image}
-          alt={title}
-          loading="eager"
-          decoding="async"
-          fetchpriority="high"
+          alt=""
+          priority
+          layout="full-width"
+          format="avif"
+          quality={80}
+          widths={[720, 1080, 1440, 1920]}
           class="absolute inset-0 h-full w-full object-cover"
         />
         <div class="absolute inset-0 bg-black/40"></div>
@@ -29,13 +30,13 @@ const {
     )
   }
 
-  <div class="relative z-10 px-6 text-center">
-    <h1 class="font-display text-4xl text-white md:text-6xl lg:text-7xl">
+  <div class="relative z-10 px-4 text-center">
+    <h1 class="font-display text-3xl text-white">
       {title}
     </h1>
     {
       subtitle && (
-        <p class="font-serif mt-6 text-base font-light italic tracking-wide text-white/80 md:text-lg">
+        <p class="font-serif mt-4 text-base font-light italic tracking-wide text-white/80">
           {subtitle}
         </p>
       )

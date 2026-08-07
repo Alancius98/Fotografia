@@ -18,62 +18,38 @@ const currentPath = Astro.url.pathname;
 ---
 
 <header class={`z-50 text-white ${solid ? 'relative bg-[#121212]' : 'absolute top-0 left-0 right-0'}`}>
-  <div class="mx-auto flex max-w-7xl flex-col items-center px-6 py-8">
-    <!-- Marca centrada -->
+  <div class="mx-auto flex max-w-lg items-center justify-between px-4 py-6">
+    <!-- Marca -->
     <a
       href="/"
-      class="mb-6 text-2xl font-light tracking-[0.35em] text-white transition-opacity hover:opacity-80 md:text-3xl"
+      class="text-xl font-light tracking-[0.35em] text-white transition-opacity hover:opacity-80"
     >
       ALANCIUS
     </a>
 
-    <!-- Menú desktop dividido -->
-    <nav class="hidden items-center gap-8 md:flex">
-      {
-        navItems.map((item) => {
-          const isActive =
-            currentPath === item.href ||
-            (item.href !== '/' && currentPath.startsWith(`${item.href}/`)) ||
-            (item.href === '/' && currentPath === '/');
-          return (
-            <a
-              href={item.href}
-              class={`text-[11px] font-light tracking-[0.25em] transition-colors ${
-                isActive ? 'text-white' : 'text-white/60 hover:text-white'
-              }`}
-            >
-              {item.label}
-            </a>
-          );
-        })
-      }
-    </nav>
-
-    <!-- Menú móvil -->
-    <div class="absolute right-6 top-8 md:hidden">
-      <button
-        id="menu-toggle"
-        aria-label="Abrir menú"
-        aria-expanded="false"
-        class="text-white/80 transition-colors hover:text-white"
-      >
-        <svg id="icon-menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="3" x2="21" y1="6" y2="6"/>
-          <line x1="3" x2="21" y1="12" y2="12"/>
-          <line x1="3" x2="21" y1="18" y2="18"/>
-        </svg>
-        <svg id="icon-close" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 6 6 18"/>
-          <path d="m6 6 12 12"/>
-        </svg>
-      </button>
-    </div>
+    <!-- Botón hamburguesa -->
+    <button
+      id="menu-toggle"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      class="z-50 text-white/80 transition-colors hover:text-white"
+    >
+      <svg id="icon-menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" x2="21" y1="6" y2="6"/>
+        <line x1="3" x2="21" y1="12" y2="12"/>
+        <line x1="3" x2="21" y1="18" y2="18"/>
+      </svg>
+      <svg id="icon-close" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 6 6 18"/>
+        <path d="m6 6 12 12"/>
+      </svg>
+    </button>
   </div>
 
   <!-- Overlay móvil -->
   <div
     id="mobile-menu"
-    class="fixed inset-0 z-40 flex flex-col items-center justify-center bg-[#121212]/95 backdrop-blur-md opacity-0 invisible transition-all duration-500"
+    class="fixed inset-0 z-40 flex flex-col items-center justify-center bg-[#121212] opacity-0 invisible transition-all duration-500"
   >
     <nav class="flex flex-col items-center gap-8">
       {
@@ -82,7 +58,7 @@ const currentPath = Astro.url.pathname;
           return (
             <a
               href={item.href}
-              class={`mobile-link translate-y-4 opacity-0 text-sm font-light tracking-[0.25em] transition-all duration-500 ${
+              class={`mobile-link translate-y-4 opacity-0 text-lg font-light tracking-[0.25em] transition-all duration-500 ${
                 isActive ? 'text-white' : 'text-white/60 hover:text-white'
               }`}
               style={`transition-delay: ${index * 75}ms`}
@@ -98,39 +74,44 @@ const currentPath = Astro.url.pathname;
 
 <script>
   (function () {
-    const toggle = document.getElementById('menu-toggle');
-    const menu = document.getElementById('mobile-menu');
-    const iconMenu = document.getElementById('icon-menu');
-    const iconClose = document.getElementById('icon-close');
+    const toggle = document.getElementById('menu-toggle') as HTMLElement | null;
+    const menu = document.getElementById('mobile-menu') as HTMLElement | null;
+    const iconMenu = document.getElementById('icon-menu') as HTMLElement | null;
+    const iconClose = document.getElementById('icon-close') as HTMLElement | null;
     const links = document.querySelectorAll('.mobile-link');
 
     if (!toggle || !menu || !iconMenu || !iconClose) return;
 
+    const toggleBtn = toggle;
+    const menuEl = menu;
+    const iconMenuEl = iconMenu;
+    const iconCloseEl = iconClose;
+
     function setMenuOpen(isOpen: boolean) {
       if (isOpen) {
-        menu.classList.remove('opacity-0', 'invisible');
-        menu.classList.add('opacity-100', 'visible');
-        iconMenu.classList.add('hidden');
-        iconClose.classList.remove('hidden');
+        menuEl.classList.remove('opacity-0', 'invisible');
+        menuEl.classList.add('opacity-100', 'visible');
+        iconMenuEl.classList.add('hidden');
+        iconCloseEl.classList.remove('hidden');
         links.forEach((link) => {
           link.classList.remove('translate-y-4', 'opacity-0');
         });
         document.body.style.overflow = 'hidden';
       } else {
-        menu.classList.add('opacity-0', 'invisible');
-        menu.classList.remove('opacity-100', 'visible');
-        iconMenu.classList.remove('hidden');
-        iconClose.classList.add('hidden');
+        menuEl.classList.add('opacity-0', 'invisible');
+        menuEl.classList.remove('opacity-100', 'visible');
+        iconMenuEl.classList.remove('hidden');
+        iconCloseEl.classList.add('hidden');
         links.forEach((link) => {
           link.classList.add('translate-y-4', 'opacity-0');
         });
         document.body.style.overflow = '';
       }
-      toggle.setAttribute('aria-expanded', String(isOpen));
+      toggleBtn.setAttribute('aria-expanded', String(isOpen));
     }
 
-    toggle.addEventListener('click', () => {
-      const isOpen = menu.classList.contains('opacity-100');
+    toggleBtn.addEventListener('click', () => {
+      const isOpen = menuEl.classList.contains('opacity-100');
       setMenuOpen(!isOpen);
     });
 

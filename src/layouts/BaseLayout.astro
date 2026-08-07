@@ -22,6 +22,24 @@ const {
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') || '';
 const pageUrl = canonical ? `${siteUrl}${canonical}` : Astro.url.href;
 const fullTitle = title === 'Inicio' ? 'Alancius | Fotografía Profesional' : `${title} | Alancius`;
+const ogImage = `${siteUrl}${image}`;
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Alancius Fotografía',
+  description,
+  url: siteUrl,
+  telephone: '+522216001248',
+  image: ogImage,
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'MX'
+  },
+  sameAs: ['https://www.instagram.com/alancius.1998/'],
+  priceRange: '$$',
+  areaServed: 'Puebla, México'
+};
 ---
 
 <!doctype html>
@@ -35,26 +53,24 @@ const fullTitle = title === 'Inicio' ? 'Alancius | Fotografía Profesional' : `$
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate icon" href="/favicon.ico" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Playfair+Display:ital,wght@0,400;1,400&display=swap"
-      rel="stylesheet"
-    />
 
     <title>{fullTitle}</title>
     <link rel="canonical" href={pageUrl} />
 
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Alancius Fotografía" />
+    <meta property="og:locale" content="es_MX" />
     <meta property="og:url" content={pageUrl} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={`${siteUrl}${image}`} />
+    <meta property="og:image" content={ogImage} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={`${siteUrl}${image}`} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} is:inline />
   </head>
   <body class="flex min-h-screen flex-col bg-background text-text antialiased">
     <Navbar solid={solidNavbar} />

@@ -1,34 +1,33 @@
 ---
-const feedImages = [
-  '/images/retrato.jpg',
-  '/images/infantil.jpg',
-  '/images/arquitectura.jpg',
-  '/images/editorial-1.jpg',
-  '/images/editorial-2.jpg',
-  '/images/editorial-3.jpg'
-];
+import { Image } from 'astro:assets';
+import { photos } from '../data/photos';
+
+const feedImages = [photos[0], photos[1], photos[2], photos[3], photos[4], photos[5]];
 ---
 
-<section class="bg-[#121212] px-6 py-24 md:py-32">
-  <div class="mx-auto max-w-7xl">
-    <h2 class="reveal mb-12 text-center text-[11px] font-light tracking-[0.35em] text-white/70 md:text-xs">
+<section class="bg-[#121212] px-4 py-20">
+  <div class="mx-auto max-w-lg">
+    <h2 class="reveal mb-10 text-center text-[11px] font-light tracking-[0.35em] text-white/70">
       SÍGUEME EN INSTAGRAM
     </h2>
 
-    <div class="grid grid-cols-3 gap-2 md:grid-cols-6 md:gap-3">
+    <div class="grid grid-cols-3 gap-1.5 md:grid-cols-6 md:gap-3">
       {
-        feedImages.map((src, index) => (
+        feedImages.map((photo, index) => (
           <a
             href="https://www.instagram.com/alancius.1998/"
             target="_blank"
             rel="noopener noreferrer"
             class={`reveal hover-image group relative aspect-square overflow-hidden bg-[#181818] ${index % 2 === 1 ? 'reveal-delay-2' : ''}`}
           >
-            <img
-              src={src}
-              alt="Instagram feed"
-              loading="lazy"
-              decoding="async"
+            <Image
+              src={photo.src}
+              alt={`${photo.title}, ${photo.alt} — publicado en Instagram de Alancius`}
+              width={480}
+              height={480}
+              fit="cover"
+              format="avif"
+              quality={90}
               class="h-full w-full object-cover"
             />
             <div class="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/20" />
@@ -37,7 +36,7 @@ const feedImages = [
       }
     </div>
 
-    <div class="reveal mt-10 text-center">
+    <div class="reveal mt-8 text-center">
       <a
         href="https://www.instagram.com/alancius.1998/"
         target="_blank"

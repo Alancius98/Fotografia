@@ -1,33 +1,39 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import heroImage from '../assets/images/hero.jpg';
+
 interface Props {
   title?: string;
   subtitle?: string;
-  image?: string;
+  image?: ImageMetadata;
 }
 
 const {
   title = 'ALANCIUS',
   subtitle = 'FOTOGRAFÍA EDITORIAL Y DE BODAS',
-  image = '/images/hero.jpg'
+  image = heroImage
 } = Astro.props;
 ---
 
 <section class="hero-section relative flex h-screen w-full items-center justify-center overflow-hidden">
-  <img
+  <Image
     src={image}
-    alt="Hero editorial photography"
-    loading="eager"
-    decoding="async"
-    fetchpriority="high"
+    alt=""
+    priority
+    layout="full-width"
+    format="avif"
+    quality={80}
+    widths={[1080, 1440, 1920]}
     class="hero-image absolute inset-0 h-full w-full object-cover"
   />
   <div class="absolute inset-0 bg-black/30"></div>
 
-  <div class="relative z-10 px-6 text-center">
-    <h1 class="font-display text-6xl text-white md:text-8xl lg:text-9xl">
+  <div class="relative z-10 px-4 text-center">
+    <h1 class="font-display text-5xl text-white">
       {title}
     </h1>
-    <p class="font-serif mt-8 text-lg font-light italic tracking-wide text-white/90 md:text-2xl">
+    <p class="font-serif mt-6 text-base font-light italic tracking-wide text-white/90">
       {subtitle}
     </p>
   </div>

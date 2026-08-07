@@ -1,34 +1,40 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import bannerImage from '../assets/images/banner.jpg';
+
 interface Props {
-  image?: string;
+  image?: ImageMetadata;
 }
 
-const { image = '/images/banner.jpg' } = Astro.props;
+const { image = bannerImage } = Astro.props;
 ---
 
-<section class="relative flex min-h-[60vh] items-center overflow-hidden md:min-h-[70vh]">
-  <img
+<section class="relative flex min-h-[50vh] items-center overflow-hidden">
+  <Image
     src={image}
-    alt="Let's connect"
-    loading="lazy"
-    decoding="async"
+    alt=""
+    layout="full-width"
+    format="avif"
+    quality={80}
+    widths={[720, 1080, 1440, 1920]}
     class="absolute inset-0 h-full w-full object-cover"
   />
   <div class="absolute inset-0 bg-black/40"></div>
 
-  <div class="relative z-10 mx-auto w-full max-w-7xl px-6">
-    <div class="flex flex-col items-start justify-between gap-10 md:flex-row md:items-end">
-      <div class="reveal max-w-xl">
-        <h2 class="font-display text-4xl text-white md:text-6xl">
+  <div class="relative z-10 mx-auto w-full max-w-lg px-4">
+    <div class="flex flex-col items-start gap-8">
+      <div class="reveal">
+        <h2 class="font-display text-3xl text-white">
           CONECTEMOS
         </h2>
-        <p class="font-serif mt-6 text-base font-light italic leading-relaxed text-white/90 md:text-lg">
+        <p class="font-serif mt-5 text-base font-light italic leading-relaxed text-white/90">
           Me encantaría escuchar tu historia y crear algo atemporal juntos.
         </p>
       </div>
 
-      <div class="reveal reveal-delay-2">
-        <a href="/contacto" class="btn-editorial">CONTÁCTAME</a>
+      <div class="reveal reveal-delay-2 w-full sm:w-auto">
+        <a href="/contacto" class="btn-editorial w-full justify-center sm:w-auto">CONTÁCTAME</a>
       </div>
     </div>
   </div>

@@ -1,4 +1,5 @@
 ---
+import { Image, getImage } from 'astro:assets';
 import { photos, categories } from '../data/photos';
 
 interface Props {
@@ -8,20 +9,34 @@ interface Props {
 
 const { showFilters = true, limit } = Astro.props;
 const displayPhotos = limit ? photos.slice(0, limit) : photos;
+
+const lightboxSrcs = new Map<string, string>();
+for (const photo of displayPhotos) {
+  const optimized = await getImage({ src: photo.src, width: 1600, format: 'avif', quality: 90 });
+  lightboxSrcs.set(photo.id, optimized.src);
+}
+
+const photoData = displayPhotos.map((photo) => ({
+  id: photo.id,
+  title: photo.title,
+  category: photo.category,
+  alt: photo.alt,
+  src: lightboxSrcs.get(photo.id)
+}));
 ---
 
 <section
-  class="gallery mx-auto max-w-7xl px-6 py-16"
-  data-photos={JSON.stringify(displayPhotos)}
+  class="gallery mx-auto max-w-lg px-4 py-12"
+  data-photos={JSON.stringify(photoData)}
 >
   {
     showFilters && (
-      <div class="mb-10 flex flex-wrap justify-center gap-3">
+      <div class="mb-8 flex flex-wrap justify-center gap-2">
         {categories.map((category) => (
           <button
             type="button"
             data-filter={category}
-            class={`filter-btn rounded-full border px-5 py-2 text-sm font-light tracking-wide transition-all ${
+            class={`filter-btn rounded-full border px-4 py-2 text-xs font-light tracking-wide transition-all ${
               category === 'Todos'
                 ? 'border-white/30 bg-white/10 text-white'
                 : 'border-white/10 text-text-muted hover:border-white/30 hover:text-white'
@@ -46,12 +61,15 @@ const displayPhotos = limit ? photos.slice(0, limit) : photos;
             data-id={photo.id}
             aria-label={`Ver ${photo.title}`}
           >
-            <img
+            <Image
               src={photo.src}
               alt={photo.alt}
-              loading={isPriority ? 'eager' : 'lazy'}
-              decoding="async"
-              fetchpriority={isPriority ? 'high' : 'low'}
+              width={600}
+              height={800}
+              fit="cover"
+              format="avif"
+              quality={90}
+              priority={isPriority}
               class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div class="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/30" />
@@ -126,13 +144,22 @@ const displayPhotos = limit ? photos.slice(0, limit) : photos;
 </section>
 
 <script>
-(function () {
-  const gallery = document.querySelector('.gallery') as HTMLElement | null;
-  if (!gallery) return;
+interface GalleryPhoto {
+  id: string;
+  title: string;
+  category: string;
+  alt: string;
+  src: string;
+}
 
-  const photos = JSON.parse(gallery.dataset.photos || '[]');
-  const items = Array.from(gallery.querySelectorAll('.gallery-item')) as HTMLElement[];
-  const filterButtons = gallery.querySelectorAll('.filter-btn');
+(function () {
+  const galleryEl = document.querySelector('.gallery') as HTMLElement | null;
+  if (!galleryEl) return;
+  const galleryDom = galleryEl;
+
+  const photos = JSON.parse(galleryDom.dataset.photos || '[]') as GalleryPhoto[];
+  const items = Array.from(galleryDom.querySelectorAll('.gallery-item')) as HTMLElement[];
+  const filterButtons = galleryDom.querySelectorAll('.filter-btn');
 
   const lightbox = document.getElementById('lightbox') as HTMLElement | null;
   const lightboxImage = document.getElementById('lightbox-image') as HTMLImageElement | null;
@@ -140,15 +167,15 @@ const displayPhotos = limit ? photos.slice(0, limit) : photos;
   const lightboxCategory = document.getElementById('lightbox-category') as HTMLElement | null;
 
   let currentIndex = 0;
-  let visiblePhotos = [...photos];
+  let visiblePhotos: GalleryPhoto[] = [...photos];
 
   function updateVisibleItems() {
-    const activeBtn = gallery.querySelector('.filter-btn[data-active="true"]') as HTMLElement | null;
+    const activeBtn = galleryDom.querySelector('.filter-btn[data-active="true"]') as HTMLElement | null;
     const filter = activeBtn?.dataset.filter || 'Todos';
 
     visiblePhotos = filter === 'Todos'
       ? [...photos]
-      : photos.filter((p: any) => p.category === filter);
+      : photos.filter((p) => p.category === filter);
 
     items.forEach((item) => {
       const category = item.dataset.category;
@@ -178,7 +205,7 @@ const displayPhotos = limit ? photos.slice(0, limit) : photos;
     });
   });
 
-  function openLightbox(photo: any, index: number) {
+  function openLightbox(photo: GalleryPhoto, index: number) {
     if (!lightbox || !lightboxImage || !lightboxTitle || !lightboxCategory) return;
 
     currentIndex = index;
@@ -212,10 +239,11 @@ const displayPhotos = limit ? photos.slice(0, limit) : photos;
   items.forEach((item) => {
     item.addEventListener('click', () => {
       const id = item.dataset.id;
-      const photo = visiblePhotos.find((p: any) => p.id === id) || photos.find((p: any) => p.id === id);
+      const photo: GalleryPhoto | undefined =
+        visiblePhotos.find((p) => p.id === id) || photos.find((p) => p.id === id);
       if (photo) {
         updateVisibleItems();
-        const index = visiblePhotos.findIndex((p: any) => p.id === photo.id);
+        const index = visiblePhotos.findIndex((p) => p.id === photo.id);
         openLightbox(photo, index >= 0 ? index : 0);
       }
     });

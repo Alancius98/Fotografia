@@ -1,75 +1,48 @@
 ---
+import { Image } from 'astro:assets';
 import { photos } from '../data/photos';
 
 const selectedPhotos = photos.slice(0, 6);
 ---
 
-<section class="bg-[#121212] px-6 py-24 md:py-32">
-  <div class="mx-auto max-w-7xl">
-    <h2 class="reveal mb-16 text-center text-[11px] font-light tracking-[0.35em] text-white/70 md:text-xs">
+<section class="bg-[#121212] px-4 py-20">
+  <div class="mx-auto max-w-lg">
+    <h2 class="reveal mb-12 text-center text-[11px] font-light tracking-[0.35em] text-white/70">
       TRABAJOS SELECCIONADOS
     </h2>
 
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <!-- Columna izquierda: verticales -->
-      <div class="flex flex-col gap-4">
-        {
-          [selectedPhotos[0], selectedPhotos[3]].map(
-            (photo, index) =>
-              photo && (
-                <a
-                  href="/portafolio"
-                  class={`reveal hover-image group relative aspect-[3/4] overflow-hidden bg-[#181818] ${index === 1 ? 'reveal-delay-2' : ''}`}
-                >
-                  <img
-                    src={photo.src}
-                    alt={photo.alt}
-                    loading="lazy"
-                    decoding="async"
-                    class="h-full w-full object-cover"
-                  />
-                  <div class="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/30" />
-                  <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                    <p class="text-[10px] font-light tracking-[0.3em] text-white/80">{photo.category}</p>
-                    <p class="font-serif mt-2 text-xl italic text-white">{photo.title}</p>
-                  </div>
-                </a>
-              )
-          )
-        }
-      </div>
-
-      <!-- Columna derecha: horizontales -->
-      <div class="flex flex-col gap-4">
-        {
-          [selectedPhotos[1], selectedPhotos[2], selectedPhotos[4], selectedPhotos[5]].map(
-            (photo, index) =>
-              photo && (
-                <a
-                  href="/portafolio"
-                  class={`reveal hover-image group relative aspect-[4/3] overflow-hidden bg-[#181818] ${index % 2 === 1 ? 'reveal-delay-2' : ''}`}
-                >
-                  <img
-                    src={photo.src}
-                    alt={photo.alt}
-                    loading="lazy"
-                    decoding="async"
-                    class="h-full w-full object-cover"
-                  />
-                  <div class="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/30" />
-                  <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                    <p class="text-[10px] font-light tracking-[0.3em] text-white/80">{photo.category}</p>
-                    <p class="font-serif mt-2 text-xl italic text-white">{photo.title}</p>
-                  </div>
-                </a>
-              )
-          )
-        }
-      </div>
+    <div class="flex flex-col gap-3">
+      {
+        selectedPhotos.map(
+          (photo, index) =>
+            photo && (
+              <a
+                href="/portafolio"
+                class={`reveal hover-image group relative aspect-[4/3] overflow-hidden bg-[#181818] ${index % 2 === 1 ? 'reveal-delay-2' : ''}`}
+              >
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  width={1152}
+                  height={864}
+                  fit="cover"
+                  format="avif"
+                  quality={90}
+                  class="h-full w-full object-cover"
+                />
+                <div class="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/30" />
+                <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                  <p class="text-[10px] font-light tracking-[0.3em] text-white/80">{photo.category}</p>
+                  <p class="font-serif mt-2 text-xl italic text-white">{photo.title}</p>
+                </div>
+              </a>
+            )
+        )
+      }
     </div>
 
-    <div class="reveal mt-16 flex justify-center">
-      <a href="/portafolio" class="btn-editorial">      VER PORTAFOLIO</a>
+    <div class="reveal mt-12 flex justify-center">
+      <a href="/portafolio" class="btn-editorial w-full justify-center sm:w-auto">VER PORTAFOLIO</a>
     </div>
   </div>
 </section>
