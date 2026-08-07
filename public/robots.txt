@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://web-1-e4ik9zz3c-alancius-projects.vercel.app/sitemap-index.xml
+Sitemap: https://web-1-alancius-projects.vercel.app/sitemap-index.xml
