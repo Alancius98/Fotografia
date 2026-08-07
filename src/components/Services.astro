@@ -1,25 +1,30 @@
 ---
+import { Image } from 'astro:assets';
+import editorial2 from '../assets/images/editorial-2.jpg';
+import retrato from '../assets/images/retrato.jpg';
+import editorial1 from '../assets/images/editorial-1.jpg';
+
 const services = [
   {
     title: 'BODAS',
     description: 'Cobertura completa de tu día más importante, desde los preparativos hasta el último baile, con un enfoque editorial y atemporal.',
     features: ['8+ horas de cobertura', 'Dos fotógrafos', 'Galería en línea', 'Imágenes editadas en alta resolución'],
     price: 'DESDE $50,000 MXN',
-    image: '/images/editorial-2.jpg'
+    image: editorial2
   },
   {
     title: 'RETRATOS',
     description: 'Sesiones íntimas pensadas para capturar tu esencia con luz natural, composición elegante y emoción auténtica.',
     features: ['Sesión de 1–2 horas', 'Asesoría de vestuario', 'Scouting de locación', '20+ imágenes editadas'],
     price: 'DESDE $9,000 MXN',
-    image: '/images/retrato.jpg'
+    image: retrato
   },
   {
     title: 'EDITORIAL',
     description: 'Campañas visuales para marcas, revistas y proyectos creativos que requieren una narrativa refinada y dirección de arte.',
     features: ['Dirección creativa', 'Estudio o locación', 'Derechos de uso', 'Entrega ágil'],
     price: 'COTIZACIÓN PERSONALIZADA',
-    image: '/images/editorial-1.jpg'
+    image: editorial1
   }
 ];
 ---
@@ -40,11 +45,14 @@ const services = [
         services.map((service, index) => (
           <div class={`reveal group border border-white/10 bg-[#181818] transition-colors duration-500 hover:border-white/30 ${index === 1 ? 'reveal-delay-2' : ''} ${index === 2 ? 'reveal-delay-3' : ''}`}>
             <div class="hover-image aspect-[4/3] overflow-hidden">
-              <img
+              <Image
                 src={service.image}
                 alt={service.title}
-                loading="lazy"
-                decoding="async"
+                width={672}
+                height={504}
+                fit="cover"
+                format="avif"
+                quality={90}
                 class="h-full w-full object-cover"
               />
             </div>
