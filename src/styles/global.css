@@ -202,7 +202,7 @@ input, select, textarea {
 
 @media (max-width: 768px) {
   .hero-section {
-    min-height: 100dvh;
+    min-height: 85dvh;
     height: auto;
   }
 }
