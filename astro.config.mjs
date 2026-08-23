@@ -15,6 +15,9 @@ export default defineConfig({
     defaultStrategy: 'viewport'
   },
   integrations: [sitemap()],
+  devToolbar: {
+    enabled: false
+  },
   vite: {
     plugins: [tailwindcss()]
   }
