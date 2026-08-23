@@ -29,7 +29,7 @@ const services = [
 ];
 ---
 
-<section id="services" class="bg-[#121212] px-4 py-20">
+<section id="services" class="bg-[#121212] px-4 py-28">
   <div class="mx-auto max-w-lg">
     <div class="reveal mb-12 text-center">
       <h2 class="text-[11px] font-light tracking-[0.35em] text-white/70">
@@ -43,7 +43,7 @@ const services = [
     <div class="flex flex-col gap-4 md:grid md:grid-cols-3 md:gap-6">
       {
         services.map((service, index) => (
-          <div class={`reveal group border border-white/10 bg-[#181818] transition-colors duration-500 hover:border-white/30 ${index === 1 ? 'reveal-delay-2' : ''} ${index === 2 ? 'reveal-delay-3' : ''}`}>
+          <div class={`reveal group flex h-full flex-col border border-white/10 bg-[#181818] transition-colors duration-500 hover:border-white/30 ${index === 1 ? 'reveal-delay-2' : ''} ${index === 2 ? 'reveal-delay-3' : ''}`}>
             <div class="hover-image aspect-[4/3] overflow-hidden">
               <Image
                 src={service.image}
@@ -56,9 +56,9 @@ const services = [
                 class="h-full w-full object-cover"
               />
             </div>
-            <div class="p-8">
+            <div class="flex flex-1 flex-col p-6 md:p-8">
               <h3 class="text-xs font-light tracking-[0.25em] text-white">{service.title}</h3>
-              <p class="font-serif mt-4 text-base italic leading-relaxed text-white/70">
+              <p class="font-serif mt-4 text-base italic leading-relaxed text-white/70 text-balance">
                 {service.description}
               </p>
               <ul class="mt-6 space-y-2">
@@ -66,7 +66,7 @@ const services = [
                   <li class="text-[10px] font-light tracking-[0.15em] text-white/50">• {feature}</li>
                 ))}
               </ul>
-              <p class="mt-8 text-[11px] font-light tracking-[0.25em] text-white/80">{service.price}</p>
+              <p class="mt-auto pt-8 text-[11px] font-light tracking-[0.25em] text-white/80">{service.price}</p>
             </div>
           </div>
         ))
@@ -74,7 +74,14 @@ const services = [
     </div>
 
     <div class="reveal mt-12 text-center">
-      <a href="/contacto" class="btn-outline w-full justify-center sm:w-auto">CONSULTAR DISPONIBILIDAD</a>
+      <a
+        href="https://wa.me/522216001248?text=Hola%2C%20me%20gustar%C3%ADa%20consultar%20disponibilidad"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-outline w-full justify-center sm:w-auto"
+      >
+        CONSULTAR DISPONIBILIDAD
+      </a>
     </div>
   </div>
 </section>

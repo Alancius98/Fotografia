@@ -199,10 +199,3 @@ input, select, textarea {
   height: 100vh;
   height: 100dvh; /* navegadores modernos usan el viewport dinámico */
 }
-
-@media (max-width: 768px) {
-  .hero-section {
-    height: 60vh;
-    min-height: 420px;
-  }
-}
