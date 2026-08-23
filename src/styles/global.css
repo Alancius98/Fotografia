@@ -193,3 +193,16 @@ input, select, textarea {
     height: -webkit-fill-available;
   }
 }
+
+/* Hero responsive: altura completa real en móvil y desktop */
+.hero-section {
+  height: 100vh;
+  height: 100dvh; /* navegadores modernos usan el viewport dinámico */
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 100dvh;
+    height: auto;
+  }
+}

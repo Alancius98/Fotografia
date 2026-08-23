@@ -16,7 +16,7 @@ const {
 } = Astro.props;
 ---
 
-<section class="hero-section relative flex h-screen w-full items-center justify-center overflow-hidden">
+<section class="hero-section relative flex w-full items-center justify-center overflow-hidden">
   <Image
     src={image}
     alt=""
@@ -25,15 +25,15 @@ const {
     format="avif"
     quality={80}
     widths={[1080, 1440, 1920]}
-    class="hero-image absolute inset-0 h-full w-full object-cover object-[center_30%] md:object-center"
+    class="hero-image absolute inset-0 h-full w-full object-cover object-center"
   />
-  <div class="absolute inset-0 bg-black/30"></div>
+  <div class="absolute inset-0 bg-black/45 md:bg-black/30"></div>
 
   <div class="relative z-10 px-4 text-center">
-    <h1 class="font-display text-5xl text-white">
+    <h1 class="font-display text-4xl text-white sm:text-5xl md:text-6xl [text-shadow:0_2px_16px_rgba(0,0,0,0.55)]">
       {title}
     </h1>
-    <p class="font-serif mt-6 text-base font-light italic tracking-wide text-white/90">
+    <p class="font-serif mt-6 max-w-xs text-base font-light italic tracking-wide text-white sm:max-w-none [text-shadow:0_1px_10px_rgba(0,0,0,0.55)]">
       {subtitle}
     </p>
   </div>
