@@ -1,12 +1,12 @@
 import type { ImageMetadata } from 'astro';
-import retrato from '../assets/images/retrato.jpg';
-import infantil from '../assets/images/infantil.jpg';
-import arquitectura from '../assets/images/arquitectura.jpg';
-import editorial1 from '../assets/images/editorial-1.jpg';
-import editorial2 from '../assets/images/editorial-2.jpg';
-import editorial3 from '../assets/images/editorial-3.jpg';
-import hero from '../assets/images/hero.jpg';
-import banner from '../assets/images/banner.jpg';
+import gallery01 from '../assets/images/gallery-01.jpg';
+import gallery02 from '../assets/images/gallery-02.jpg';
+import gallery03 from '../assets/images/gallery-03.jpg';
+import gallery04 from '../assets/images/gallery-04.jpg';
+import gallery05 from '../assets/images/gallery-05.jpg';
+import gallery06 from '../assets/images/gallery-06.jpg';
+import gallery07 from '../assets/images/gallery-07.jpg';
+import gallery08 from '../assets/images/gallery-08.jpg';
 
 export type Category = 'Todos' | 'Retrato' | 'Editorial';
 
@@ -23,58 +23,58 @@ export const categories: Category[] = ['Todos', 'Retrato', 'Editorial'];
 export const photos: Photo[] = [
   {
     id: '1',
-    src: retrato,
-    alt: 'Retrato familiar a luz natural',
+    src: gallery01,
+    alt: 'Retrato artístico en estudio con luz natural',
     category: 'Retrato',
-    title: 'Luz familiar'
+    title: 'Conexión'
   },
   {
     id: '2',
-    src: infantil,
-    alt: 'Retrato infantil en campo',
+    src: gallery02,
+    alt: 'Retrato íntimo en exterior',
     category: 'Retrato',
-    title: 'Infancia'
+    title: 'Mirada'
   },
   {
     id: '3',
-    src: arquitectura,
-    alt: 'Retrato editorial en arquitectura colonial',
+    src: gallery03,
+    alt: 'Sesión editorial urbana',
+    category: 'Editorial',
+    title: 'Urbano'
+  },
+  {
+    id: '4',
+    src: gallery04,
+    alt: 'Composición editorial en locación',
+    category: 'Editorial',
+    title: 'Estructura'
+  },
+  {
+    id: '5',
+    src: gallery05,
+    alt: 'Retrato editorial con luz dramática',
+    category: 'Retrato',
+    title: 'Drama'
+  },
+  {
+    id: '6',
+    src: gallery06,
+    alt: 'Proyecto editorial de moda',
+    category: 'Editorial',
+    title: 'Elegancia'
+  },
+  {
+    id: '7',
+    src: gallery07,
+    alt: 'Retrato creativo en locación',
     category: 'Retrato',
     title: 'Esencia'
   },
   {
-    id: '4',
-    src: editorial1,
-    alt: 'Retrato editorial nocturno',
-    category: 'Editorial',
-    title: 'Noche morada'
-  },
-  {
-    id: '5',
-    src: editorial2,
-    alt: 'Retrato editorial en vestido verde',
-    category: 'Editorial',
-    title: 'Elegancia nocturna'
-  },
-  {
-    id: '6',
-    src: editorial3,
-    alt: 'Retrato editorial con luces de ciudad',
-    category: 'Editorial',
-    title: 'Luces de la ciudad'
-  },
-  {
-    id: '7',
-    src: hero,
-    alt: 'Retrato editorial atemporal',
-    category: 'Editorial',
-    title: 'Atemporal'
-  },
-  {
     id: '8',
-    src: banner,
-    alt: 'Retrato editorial con reflejos urbanos',
+    src: gallery08,
+    alt: 'Editorial nocturna con luces de ciudad',
     category: 'Editorial',
-    title: 'Reflejos'
+    title: 'Noche'
   }
 ];

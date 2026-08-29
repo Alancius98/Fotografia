@@ -2,13 +2,13 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/PageHeader.astro';
-import heroImage from '../assets/images/hero.jpg';
-import arquitecturaImage from '../assets/images/arquitectura.jpg';
+import heroImage from '../assets/images/hero-main.jpg';
+import aboutImage from '../assets/images/about.jpg';
 ---
 
 <BaseLayout
   title="Sobre Mí"
-  description="Conoce a Alancius — fotógrafo editorial, retratos y bodas."
+  description="Conoce a Alancius — fotógrafo de retratos, bodas y proyectos editoriales."
   solidNavbar={true}
 >
   <PageHeader
@@ -21,7 +21,7 @@ import arquitecturaImage from '../assets/images/arquitectura.jpg';
     <div class="flex flex-col gap-10 md:grid md:grid-cols-2 md:items-center md:gap-16">
       <div class="reveal hover-image aspect-[4/5] overflow-hidden bg-[#181818]">
         <Image
-          src={arquitecturaImage}
+          src={aboutImage}
           alt="Alancius fotógrafo"
           width={560}
           height={700}
@@ -34,33 +34,32 @@ import arquitecturaImage from '../assets/images/arquitectura.jpg';
 
       <div class="space-y-6">
         <h2 class="reveal text-[11px] font-light tracking-[0.35em] text-white/60">
-          FOTÓGRAFO EDITORIAL Y DE BODAS
+          FOTÓGRAFO DE RETRATOS, BODAS Y EDITORIAL
         </h2>
         <p class="reveal reveal-delay-1 font-serif text-xl font-light italic leading-relaxed text-white">
-          "Menos pose, más esencia. Cada fotograma debe sentirse honesto, elegante y atemporal."
+          "Menos pose, más esencia. Cada foto debe sentirse honesta, elegante y atemporal."
         </p>
         <p class="reveal reveal-delay-2 text-sm font-light leading-relaxed text-white/70">
-          Desde hace más de ocho años capturo retratos, bodas y campañas comerciales.
-          Mi trabajo busca la honestidad en cada imagen: la luz justa, la expresión real, el detalle
-          que cuenta la historia.
+          Soy Alancius, fotógrafo con 1 año de experiencia. Me especializo en retratos, bodas y fotografía editorial.
+          Mi nivel de español es B1, así que prefiero la comunicación clara por mensaje (WhatsApp) para entender bien cada idea antes de la sesión.
         </p>
         <p class="reveal reveal-delay-2 text-sm font-light leading-relaxed text-white/70">
-          Colaboro con marcas, agencias y personas que valoran la calidad visual y una narrativa clara.
-          Cada proyecto comienza escuchando lo que quieres contar.
+          Soy sordo, y eso me ha enseñado a trabajar con mucha atención visual: las expresiones, los gestos y la luz me dicen más que las palabras.
+          Cada proyecto es un espacio cómodo donde busco capturar tu esencia sin poses forzadas.
         </p>
 
         <div class="reveal reveal-delay-3 grid grid-cols-3 gap-4 border-t border-white/10 pt-8">
           <div>
-            <p class="text-2xl font-extralight tracking-wide text-white">8+</p>
-            <p class="mt-1 text-[10px] font-light uppercase tracking-[0.2em] text-white/50">Años</p>
+            <p class="text-2xl font-extralight tracking-wide text-white">1+</p>
+            <p class="mt-1 text-[10px] font-light uppercase tracking-[0.2em] text-white/50">Año</p>
           </div>
           <div>
-            <p class="text-2xl font-extralight tracking-wide text-white">120+</p>
-            <p class="mt-1 text-[10px] font-light uppercase tracking-[0.2em] text-white/50">Proyectos</p>
+            <p class="text-2xl font-extralight tracking-wide text-white">15+</p>
+            <p class="mt-1 text-[10px] font-light uppercase tracking-[0.2em] text-white/50">Sesiones</p>
           </div>
           <div>
-            <p class="text-2xl font-extralight tracking-wide text-white">40+</p>
-            <p class="mt-1 text-[10px] font-light uppercase tracking-[0.2em] text-white/50">Marcas</p>
+            <p class="text-2xl font-extralight tracking-wide text-white">5+</p>
+            <p class="mt-1 text-[10px] font-light uppercase tracking-[0.2em] text-white/50">Clientes</p>
           </div>
         </div>
       </div>
